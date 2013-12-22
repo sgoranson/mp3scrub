@@ -1,0 +1,549 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.gui.guiThreads</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.<a href="mp3scrub.gui.html"><font color="#ffffff">gui</font></a>.guiThreads</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/gui/guiThreads.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/gui/guiThreads.py</a></font></td></tr></table>
+    <p><tt>classes&nbsp;and&nbsp;thread&nbsp;wrappers&nbsp;to&nbsp;help&nbsp;the&nbsp;GUI&nbsp;stay&nbsp;speedy&nbsp;during&nbsp;long&nbsp;running<br>
+processes.&nbsp;Sometimes&nbsp;tag&nbsp;identification&nbsp;can&nbsp;take&nbsp;3+&nbsp;hours,&nbsp;and&nbsp;you&nbsp;don't&nbsp;want&nbsp;to<br>
+wait&nbsp;that&nbsp;long&nbsp;for&nbsp;the&nbsp;window&nbsp;to&nbsp;repaint.&nbsp;<br>
+&nbsp;<br>
+The&nbsp;GUI&nbsp;will&nbsp;spawn&nbsp;a&nbsp;new&nbsp;thread&nbsp;for&nbsp;finding/IDing/updating&nbsp;mp3s,&nbsp;and&nbsp;a&nbsp;wxEvent&nbsp;<br>
+will&nbsp;be&nbsp;sent&nbsp;when&nbsp;the&nbsp;work&nbsp;is&nbsp;done.<br>
+&nbsp;<br>
+The&nbsp;GUI&nbsp;also&nbsp;needs&nbsp;to&nbsp;be&nbsp;told&nbsp;when&nbsp;to&nbsp;refresh&nbsp;the&nbsp;main&nbsp;grid&nbsp;of&nbsp;mp3&nbsp;metadata.&nbsp;The<br>
+metadata&nbsp;(MP3File&nbsp;list)&nbsp;will&nbsp;obviously&nbsp;be&nbsp;changing&nbsp;as&nbsp;we&nbsp;update&nbsp;tags,&nbsp;and&nbsp;the&nbsp;grid<br>
+needs&nbsp;to&nbsp;reflect&nbsp;that.&nbsp;There&nbsp;is&nbsp;a&nbsp;basic&nbsp;subject/observer&nbsp;pattern&nbsp;that&nbsp;wraps&nbsp;the&nbsp;<br>
+MP3File's&nbsp;and&nbsp;makes&nbsp;updates&nbsp;clean.&nbsp;<br>
+&nbsp;<br>
+Also&nbsp;note&nbsp;that&nbsp;the&nbsp;main&nbsp;list&nbsp;of&nbsp;MP3s&nbsp;is&nbsp;global&nbsp;(as&nbsp;it&nbsp;is&nbsp;shared&nbsp;by&nbsp;threads),&nbsp;so<br>
+mutexs&nbsp;are&nbsp;a&nbsp;must.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.globalz.html">mp3scrub.globalz</a><br>
+<a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+<a href="mp3scrub.scrubCmds.html">mp3scrub.scrubCmds</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="mp3scrub.netquery.tagGuessCache.html">mp3scrub.netquery.tagGuessCache</a><br>
+<a href="threading.html">threading</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+<a href="traceback.html">traceback</a><br>
+<a href="wx.html">wx</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#MP3Observer">MP3Observer</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#MP3Subject">MP3Subject</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="exceptions.html#Exception">exceptions.Exception</a>(<a href="exceptions.html#BaseException">exceptions.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#ThreadQuit">ThreadQuit</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="threading.html#Thread">threading.Thread</a>(<a href="threading.html#_Verbose">threading._Verbose</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#CleanThread">CleanThread</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#DirTreeThread">DirTreeThread</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#ExportThread">ExportThread</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#FindThread">FindThread</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#ImportThread">ImportThread</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.gui.guiThreads.html#UpdateThread">UpdateThread</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="CleanThread">class <strong>CleanThread</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="threading.html#Thread">Thread</a>&nbsp;to&nbsp;wrap&nbsp;the&nbsp;music&nbsp;identification&nbsp;of&nbsp;the&nbsp;*.mp3&nbsp;files.&nbsp;Each&nbsp;<a href="threading.html#Thread">Thread</a>&nbsp;calls<br>
+an&nbsp;associated&nbsp;function&nbsp;in&nbsp;scrubCmds.py.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.gui.guiThreads.html#CleanThread">CleanThread</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="threading.html#_Verbose">threading._Verbose</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="CleanThread-__init__"><strong>__init__</strong></a>(self, **mkwargs)</dt></dl>
+
+<dl><dt><a name="CleanThread-cleanMusic"><strong>cleanMusic</strong></a>(self, cbwin<font color="#909090">=None</font>, bar_max<font color="#909090">=5000</font>)</dt><dd><tt>cbwin&nbsp;-&gt;&nbsp;ref&nbsp;to&nbsp;the&nbsp;parent&nbsp;window&nbsp;(need&nbsp;to&nbsp;know&nbsp;where&nbsp;to&nbsp;send&nbsp;done&nbsp;event)<br>
+bar_max&nbsp;-&gt;&nbsp;length&nbsp;of&nbsp;the&nbsp;mp3&nbsp;list.&nbsp;needed&nbsp;for&nbsp;progressDialog&nbsp;updating</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="CleanThread-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CleanThread-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CleanThread-isAlive"><strong>isAlive</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CleanThread-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CleanThread-is_alive"><strong>is_alive</strong></a> = isAlive(self)</dt></dl>
+
+<dl><dt><a name="CleanThread-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="CleanThread-run"><strong>run</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="CleanThread-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="CleanThread-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="CleanThread-start"><strong>start</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>daemon</strong></dt>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="threading.html#_Verbose">threading._Verbose</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DirTreeThread">class <strong>DirTreeThread</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>move&nbsp;the&nbsp;files&nbsp;to&nbsp;a&nbsp;new&nbsp;location&nbsp;and&nbsp;make&nbsp;a&nbsp;nice&nbsp;tree&nbsp;based&nbsp;on&nbsp;artist&nbsp;dir<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.gui.guiThreads.html#DirTreeThread">DirTreeThread</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="threading.html#_Verbose">threading._Verbose</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DirTreeThread-__init__"><strong>__init__</strong></a>(self, **mkwargs)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-dirtree"><strong>dirtree</strong></a>(self, dir_name<font color="#909090">=''</font>, cbwin<font color="#909090">=None</font>)</dt><dd><tt>dir_name&nbsp;-&gt;&nbsp;where&nbsp;to&nbsp;move&nbsp;the&nbsp;mp3&nbsp;collection<br>
+cbwin&nbsp;-&gt;&nbsp;ref&nbsp;to&nbsp;the&nbsp;parent&nbsp;window&nbsp;(need&nbsp;to&nbsp;know&nbsp;where&nbsp;to&nbsp;send&nbsp;done&nbsp;event)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="DirTreeThread-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-isAlive"><strong>isAlive</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-is_alive"><strong>is_alive</strong></a> = isAlive(self)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-run"><strong>run</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="DirTreeThread-start"><strong>start</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>daemon</strong></dt>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="threading.html#_Verbose">threading._Verbose</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ExportThread">class <strong>ExportThread</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>export&nbsp;the&nbsp;mp3&nbsp;list&nbsp;an&nbsp;xml&nbsp;file<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.gui.guiThreads.html#ExportThread">ExportThread</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="threading.html#_Verbose">threading._Verbose</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ExportThread-__init__"><strong>__init__</strong></a>(self, **mkwargs)</dt></dl>
+
+<dl><dt><a name="ExportThread-doExport"><strong>doExport</strong></a>(self, xml_name<font color="#909090">=''</font>, cbwin<font color="#909090">=None</font>)</dt><dd><tt>xml_name&nbsp;-&gt;&nbsp;xml&nbsp;tag&nbsp;file<br>
+cbwin&nbsp;-&gt;&nbsp;ref&nbsp;to&nbsp;the&nbsp;parent&nbsp;window&nbsp;(need&nbsp;to&nbsp;know&nbsp;where&nbsp;to&nbsp;send&nbsp;done&nbsp;event)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="ExportThread-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExportThread-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExportThread-isAlive"><strong>isAlive</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExportThread-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExportThread-is_alive"><strong>is_alive</strong></a> = isAlive(self)</dt></dl>
+
+<dl><dt><a name="ExportThread-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ExportThread-run"><strong>run</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ExportThread-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="ExportThread-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="ExportThread-start"><strong>start</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>daemon</strong></dt>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="threading.html#_Verbose">threading._Verbose</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="FindThread">class <strong>FindThread</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="threading.html#Thread">Thread</a>&nbsp;to&nbsp;wrap&nbsp;the&nbsp;finding&nbsp;of&nbsp;the&nbsp;*.mp3&nbsp;files.&nbsp;Each&nbsp;<a href="threading.html#Thread">Thread</a>&nbsp;calls<br>
+an&nbsp;associated&nbsp;function&nbsp;in&nbsp;scrubCmds.py.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.gui.guiThreads.html#FindThread">FindThread</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="threading.html#_Verbose">threading._Verbose</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="FindThread-__init__"><strong>__init__</strong></a>(self, **mkwargs)</dt></dl>
+
+<dl><dt><a name="FindThread-listMusic"><strong>listMusic</strong></a>(self, dir_name<font color="#909090">=''</font>, cbwin<font color="#909090">=None</font>)</dt><dd><tt>dir_name&nbsp;-&gt;&nbsp;directory&nbsp;to&nbsp;search<br>
+cbwin&nbsp;-&gt;&nbsp;ref&nbsp;to&nbsp;the&nbsp;parent&nbsp;window&nbsp;(need&nbsp;to&nbsp;know&nbsp;where&nbsp;to&nbsp;send&nbsp;done&nbsp;event)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="FindThread-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FindThread-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FindThread-isAlive"><strong>isAlive</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FindThread-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FindThread-is_alive"><strong>is_alive</strong></a> = isAlive(self)</dt></dl>
+
+<dl><dt><a name="FindThread-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="FindThread-run"><strong>run</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="FindThread-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="FindThread-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="FindThread-start"><strong>start</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>daemon</strong></dt>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="threading.html#_Verbose">threading._Verbose</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ImportThread">class <strong>ImportThread</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Import&nbsp;a&nbsp;previously&nbsp;saved&nbsp;XML&nbsp;file&nbsp;of&nbsp;mp3&nbsp;tag&nbsp;edits<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.gui.guiThreads.html#ImportThread">ImportThread</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="threading.html#_Verbose">threading._Verbose</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ImportThread-__init__"><strong>__init__</strong></a>(self, **mkwargs)</dt></dl>
+
+<dl><dt><a name="ImportThread-doImport"><strong>doImport</strong></a>(self, xml_name<font color="#909090">=''</font>, cbwin<font color="#909090">=None</font>)</dt><dd><tt>xml_name&nbsp;-&gt;&nbsp;xml&nbsp;tag&nbsp;file<br>
+cbwin&nbsp;-&gt;&nbsp;ref&nbsp;to&nbsp;the&nbsp;parent&nbsp;window&nbsp;(need&nbsp;to&nbsp;know&nbsp;where&nbsp;to&nbsp;send&nbsp;done&nbsp;event)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="ImportThread-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ImportThread-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ImportThread-isAlive"><strong>isAlive</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ImportThread-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ImportThread-is_alive"><strong>is_alive</strong></a> = isAlive(self)</dt></dl>
+
+<dl><dt><a name="ImportThread-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="ImportThread-run"><strong>run</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="ImportThread-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="ImportThread-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="ImportThread-start"><strong>start</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>daemon</strong></dt>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="threading.html#_Verbose">threading._Verbose</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MP3Observer">class <strong>MP3Observer</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>an&nbsp;observer&nbsp;(see&nbsp;GoF&nbsp;observer&nbsp;pattern)&nbsp;that&nbsp;has&nbsp;an&nbsp;MP3File.<br>
+Needs&nbsp;a&nbsp;ref&nbsp;to&nbsp;the&nbsp;MP3Grid&nbsp;to&nbsp;know&nbsp;how&nbsp;to&nbsp;update&nbsp;the&nbsp;GUI.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MP3Observer-__init__"><strong>__init__</strong></a>(self, mp3_subj, row_n, grid_ref)</dt></dl>
+
+<dl><dt><a name="MP3Observer-update"><strong>update</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MP3Subject">class <strong>MP3Subject</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>a&nbsp;subject&nbsp;(see&nbsp;GoF&nbsp;observer&nbsp;pattern)&nbsp;that&nbsp;has&nbsp;an&nbsp;MP3File.<br>
+When&nbsp;it's&nbsp;MP3File&nbsp;has&nbsp;been&nbsp;modified,&nbsp;the&nbsp;user&nbsp;must&nbsp;call&nbsp;<a href="#MP3Subject-notify">notify</a>()<br>
+to&nbsp;cause&nbsp;the&nbsp;GUI&nbsp;to&nbsp;update.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="MP3Subject-__init__"><strong>__init__</strong></a>(self, mp3_obj)</dt></dl>
+
+<dl><dt><a name="MP3Subject-addObserver"><strong>addObserver</strong></a>(self, observer)</dt></dl>
+
+<dl><dt><a name="MP3Subject-delObserver"><strong>delObserver</strong></a>(self, observer)</dt></dl>
+
+<dl><dt><a name="MP3Subject-notify"><strong>notify</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ThreadQuit">class <strong>ThreadQuit</strong></a>(<a href="exceptions.html#Exception">exceptions.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>A&nbsp;safe&nbsp;way&nbsp;to&nbsp;exit&nbsp;a&nbsp;thread&nbsp;early&nbsp;if&nbsp;cancel&nbsp;has&nbsp;been&nbsp;clicked.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.gui.guiThreads.html#ThreadQuit">ThreadQuit</a></dd>
+<dd><a href="exceptions.html#Exception">exceptions.Exception</a></dd>
+<dd><a href="exceptions.html#BaseException">exceptions.BaseException</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Methods inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><a name="ThreadQuit-__init__"><strong>__init__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__init__">__init__</a>(...)&nbsp;initializes&nbsp;x;&nbsp;see&nbsp;x.__class__.__doc__&nbsp;for&nbsp;signature</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="exceptions.html#Exception">exceptions.Exception</a>:<br>
+<dl><dt><strong>__new__</strong> = &lt;built-in method __new__ of type object at 0x821cdc0&gt;<dd><tt>T.<a href="#ThreadQuit-__new__">__new__</a>(S,&nbsp;...)&nbsp;-&gt;&nbsp;a&nbsp;new&nbsp;<a href="__builtin__.html#object">object</a>&nbsp;with&nbsp;type&nbsp;S,&nbsp;a&nbsp;subtype&nbsp;of&nbsp;T</tt></dl>
+
+<hr>
+Methods inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><a name="ThreadQuit-__delattr__"><strong>__delattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__delattr__">__delattr__</a>('name')&nbsp;&lt;==&gt;&nbsp;del&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ThreadQuit-__getattribute__"><strong>__getattribute__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__getattribute__">__getattribute__</a>('name')&nbsp;&lt;==&gt;&nbsp;x.name</tt></dd></dl>
+
+<dl><dt><a name="ThreadQuit-__getitem__"><strong>__getitem__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__getitem__">__getitem__</a>(y)&nbsp;&lt;==&gt;&nbsp;x[y]</tt></dd></dl>
+
+<dl><dt><a name="ThreadQuit-__getslice__"><strong>__getslice__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__getslice__">__getslice__</a>(i,&nbsp;j)&nbsp;&lt;==&gt;&nbsp;x[i:j]<br>
+&nbsp;<br>
+Use&nbsp;of&nbsp;negative&nbsp;indices&nbsp;is&nbsp;not&nbsp;supported.</tt></dd></dl>
+
+<dl><dt><a name="ThreadQuit-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThreadQuit-__repr__"><strong>__repr__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__repr__">__repr__</a>()&nbsp;&lt;==&gt;&nbsp;repr(x)</tt></dd></dl>
+
+<dl><dt><a name="ThreadQuit-__setattr__"><strong>__setattr__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__setattr__">__setattr__</a>('name',&nbsp;value)&nbsp;&lt;==&gt;&nbsp;x.name&nbsp;=&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="ThreadQuit-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ThreadQuit-__str__"><strong>__str__</strong></a>(...)</dt><dd><tt>x.<a href="#ThreadQuit-__str__">__str__</a>()&nbsp;&lt;==&gt;&nbsp;str(x)</tt></dd></dl>
+
+<dl><dt><a name="ThreadQuit-__unicode__"><strong>__unicode__</strong></a>(...)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="exceptions.html#BaseException">exceptions.BaseException</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+<dl><dt><strong>message</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="UpdateThread">class <strong>UpdateThread</strong></a>(<a href="threading.html#Thread">threading.Thread</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="threading.html#Thread">Thread</a>&nbsp;to&nbsp;wrap&nbsp;the&nbsp;new&nbsp;tag&nbsp;updating&nbsp;of&nbsp;the&nbsp;*.mp3&nbsp;files.&nbsp;Each&nbsp;<a href="threading.html#Thread">Thread</a>&nbsp;calls<br>
+an&nbsp;associated&nbsp;function&nbsp;in&nbsp;scrubCmds.py.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.gui.guiThreads.html#UpdateThread">UpdateThread</a></dd>
+<dd><a href="threading.html#Thread">threading.Thread</a></dd>
+<dd><a href="threading.html#_Verbose">threading._Verbose</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="UpdateThread-__init__"><strong>__init__</strong></a>(self, **mkwargs)</dt></dl>
+
+<dl><dt><a name="UpdateThread-updateMusic"><strong>updateMusic</strong></a>(self, cbwin<font color="#909090">=None</font>)</dt><dd><tt>cbwin&nbsp;-&gt;&nbsp;ref&nbsp;to&nbsp;the&nbsp;parent&nbsp;window&nbsp;(need&nbsp;to&nbsp;know&nbsp;where&nbsp;to&nbsp;send&nbsp;done&nbsp;event)</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><a name="UpdateThread-__repr__"><strong>__repr__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UpdateThread-getName"><strong>getName</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UpdateThread-isAlive"><strong>isAlive</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UpdateThread-isDaemon"><strong>isDaemon</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UpdateThread-is_alive"><strong>is_alive</strong></a> = isAlive(self)</dt></dl>
+
+<dl><dt><a name="UpdateThread-join"><strong>join</strong></a>(self, timeout<font color="#909090">=None</font>)</dt></dl>
+
+<dl><dt><a name="UpdateThread-run"><strong>run</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="UpdateThread-setDaemon"><strong>setDaemon</strong></a>(self, daemonic)</dt></dl>
+
+<dl><dt><a name="UpdateThread-setName"><strong>setName</strong></a>(self, name)</dt></dl>
+
+<dl><dt><a name="UpdateThread-start"><strong>start</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="threading.html#Thread">threading.Thread</a>:<br>
+<dl><dt><strong>daemon</strong></dt>
+</dl>
+<dl><dt><strong>ident</strong></dt>
+</dl>
+<dl><dt><strong>name</strong></dt>
+</dl>
+<hr>
+Data descriptors inherited from <a href="threading.html#_Verbose">threading._Verbose</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

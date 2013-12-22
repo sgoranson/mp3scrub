@@ -1,0 +1,55 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.util.strtool</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.<a href="mp3scrub.util.html"><font color="#ffffff">util</font></a>.strtool</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/util/strtool.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/util/strtool.py</a></font></td></tr></table>
+    <p><tt>you&nbsp;have&nbsp;two&nbsp;ways&nbsp;to&nbsp;guess&nbsp;a&nbsp;file's&nbsp;identity:&nbsp;hash&nbsp;it&nbsp;and&nbsp;use&nbsp;musicbrainz,&nbsp;or<br>
+use&nbsp;the&nbsp;existing&nbsp;tags&nbsp;and&nbsp;try&nbsp;to&nbsp;guess&nbsp;at&nbsp;what&nbsp;they&nbsp;were&nbsp;trying&nbsp;to&nbsp;mean.<br>
+&nbsp;<br>
+&nbsp;a&nbsp;few&nbsp;kinds&nbsp;of&nbsp;string&nbsp;functions&nbsp;for&nbsp;parsing&nbsp;XML&nbsp;back&nbsp;from&nbsp;last.fm,&nbsp;id3&nbsp;tags,<br>
+&nbsp;string&nbsp;distances,&nbsp;hueristics&nbsp;for&nbsp;fuzzy&nbsp;tag&nbsp;matching,&nbsp;etc...</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.globalz.html">mp3scrub.globalz</a><br>
+<a href="htmlentitydefs.html">htmlentitydefs</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="unicodedata.html">unicodedata</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-artistCompare"><strong>artistCompare</strong></a>(my_str, real_str)</dt><dd><tt>loose&nbsp;artist&nbsp;matching</tt></dd></dl>
+ <dl><dt><a name="-getAlbumType"><strong>getAlbumType</strong></a>(album_str)</dt><dd><tt>rough&nbsp;guess&nbsp;on&nbsp;albumType:&nbsp;'live',&nbsp;'hits',&nbsp;'normal'</tt></dd></dl>
+ <dl><dt><a name="-printNice"><strong>printNice</strong></a>(*args)</dt><dd><tt>#&nbsp;(field1,&nbsp;val1),&nbsp;(field2,&nbsp;val2)...</tt></dd></dl>
+ <dl><dt><a name="-removeTrackJunk"><strong>removeTrackJunk</strong></a>(a)</dt><dd><tt>track&nbsp;names&nbsp;often&nbsp;include&nbsp;stuff&nbsp;we&nbsp;just&nbsp;don't&nbsp;care&nbsp;about...<br>
+e.g.&nbsp;kill&nbsp;the&nbsp;parens&nbsp;here:<br>
+Smells&nbsp;Like&nbsp;Teen&nbsp;Spirit&nbsp;(album&nbsp;version)<br>
+Rape&nbsp;Me&nbsp;(explicit)</tt></dd></dl>
+ <dl><dt><a name="-safeUni"><strong>safeUni</strong></a>(uni_str)</dt></dl>
+ <dl><dt><a name="-sanitizeArtistStr"><strong>sanitizeArtistStr</strong></a>(a)</dt><dd><tt>for&nbsp;artist&nbsp;comparision,&nbsp;we&nbsp;don't&nbsp;want&nbsp;to&nbsp;consider&nbsp;things&nbsp;like&nbsp;capitalization,<br>
+parentheticals&nbsp;e.g.&nbsp;Everclear&nbsp;(band),&nbsp;and&nbsp;'the'</tt></dd></dl>
+ <dl><dt><a name="-sanitizeTrackStr"><strong>sanitizeTrackStr</strong></a>(a)</dt><dd><tt>for&nbsp;track&nbsp;comparision,&nbsp;we&nbsp;don't&nbsp;want&nbsp;to&nbsp;consider&nbsp;things&nbsp;like&nbsp;capitalization</tt></dd></dl>
+ <dl><dt><a name="-strDist"><strong>strDist</strong></a>(a, b)</dt><dd><tt>Calculates&nbsp;the&nbsp;Levenshtein&nbsp;distance&nbsp;between&nbsp;a&nbsp;and&nbsp;b.<br>
+src:&nbsp;<a href="http://hetland.org/coding/python/levenshtein.py">http://hetland.org/coding/python/levenshtein.py</a></tt></dd></dl>
+ <dl><dt><a name="-trackCompare"><strong>trackCompare</strong></a>(my_str, real_str)</dt><dd><tt>the&nbsp;idea&nbsp;is&nbsp;to&nbsp;find&nbsp;the&nbsp;best&nbsp;matching&nbsp;track,&nbsp;not&nbsp;just&nbsp;the&nbsp;first&nbsp;match.<br>
+so&nbsp;this&nbsp;will&nbsp;return&nbsp;the&nbsp;stddist&nbsp;on&nbsp;a&nbsp;potential&nbsp;match,&nbsp;or&nbsp;-1&nbsp;on&nbsp;no&nbsp;match</tt></dd></dl>
+ <dl><dt><a name="-unescape"><strong>unescape</strong></a>(text)</dt><dd><tt>Removes&nbsp;HTML&nbsp;or&nbsp;XML&nbsp;character&nbsp;references&nbsp;and&nbsp;entities&nbsp;from&nbsp;a&nbsp;text&nbsp;string.<br>
+source:&nbsp;<a href="http://effbot.org/zone/re-sub.htm">http://effbot.org/zone/re-sub.htm</a></tt></dd></dl>
+</td></tr></table>
+</body></html>

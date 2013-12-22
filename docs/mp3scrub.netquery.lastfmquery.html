@@ -1,0 +1,102 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.netquery.lastfmquery</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.<a href="mp3scrub.netquery.html"><font color="#ffffff">netquery</font></a>.lastfmquery</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/netquery/lastfmquery.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/netquery/lastfmquery.py</a></font></td></tr></table>
+    <p><tt>functions&nbsp;to&nbsp;request&nbsp;artist&nbsp;metadata&nbsp;from&nbsp;last.fm&nbsp;and&nbsp;parse&nbsp;the&nbsp;xml&nbsp;output.<br>
+&nbsp;<br>
+1.&nbsp;artistSearch&nbsp;-&nbsp;to&nbsp;get&nbsp;a&nbsp;likely&nbsp;artist&nbsp;name&nbsp;string&nbsp;given&nbsp;your&nbsp;artist&nbsp;string<br>
+2.&nbsp;getArtistsAlbums&nbsp;-&nbsp;given&nbsp;string&nbsp;returned&nbsp;from&nbsp;#1,&nbsp;list&nbsp;of&nbsp;popular&nbsp;albums<br>
+3.&nbsp;getAlbumDetails&nbsp;-&nbsp;given&nbsp;album_mbid&nbsp;#2,&nbsp;list&nbsp;of&nbsp;likely&nbsp;last.fm&nbsp;IDs<br>
+4.&nbsp;getAlbumTracks&nbsp;-&nbsp;given&nbsp;id&nbsp;from&nbsp;#3,&nbsp;returns&nbsp;tracks</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.util.findxml.html">mp3scrub.util.findxml</a><br>
+<a href="mp3scrub.globalz.html">mp3scrub.globalz</a><br>
+</td><td width="25%" valign=top><a href="httplib.html">httplib</a><br>
+<a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+</td><td width="25%" valign=top><a href="urllib.html">urllib</a><br>
+<a href="urllib2.html">urllib2</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="mp3scrub.netquery.lastfmquery.html#XMLTAG">XMLTAG</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="XMLTAG">class <strong>XMLTAG</strong></a></font></td></tr>
+    
+<tr><td bgcolor="#ffc8d8"><tt>&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%">Data and other attributes defined here:<br>
+<dl><dt><strong>ALBUMARTIST</strong> = 'artist'</dl>
+
+<dl><dt><strong>ALBUMID</strong> = 'id'</dl>
+
+<dl><dt><strong>ALBUMMBID</strong> = 'mbid'</dl>
+
+<dl><dt><strong>ALBUMNAME</strong> = 'name'</dl>
+
+<dl><dt><strong>ALBUMNODE</strong> = 'album'</dl>
+
+<dl><dt><strong>ALBUMRANK</strong> = 'playcount'</dl>
+
+<dl><dt><strong>ARTIST</strong> = 'artist'</dl>
+
+<dl><dt><strong>ARTISTNAME</strong> = 'name'</dl>
+
+<dl><dt><strong>TRACKLIST</strong> = 'trackList'</dl>
+
+<dl><dt><strong>TRACKNAME</strong> = 'title'</dl>
+
+<dl><dt><strong>TRACKNODE</strong> = 'track'</dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-artistSearch"><strong>artistSearch</strong></a>(artist_str)</dt><dd><tt>given&nbsp;an&nbsp;atrist&nbsp;name,&nbsp;returns&nbsp;likely&nbsp;name&nbsp;matches</tt></dd></dl>
+ <dl><dt><a name="-genericQuery"><strong>genericQuery</strong></a>(url)</dt><dd><tt>low&nbsp;level&nbsp;HTTP&nbsp;request&nbsp;to&nbsp;last.fm.&nbsp;retries&nbsp;a&nbsp;few&nbsp;if&nbsp;failure.<br>
+&nbsp;<br>
+returns&nbsp;XML&nbsp;obj&nbsp;if&nbsp;ok,&nbsp;None&nbsp;if&nbsp;not</tt></dd></dl>
+ <dl><dt><a name="-getAlbumDetails"><strong>getAlbumDetails</strong></a>(album_mbid)</dt><dd><tt>given&nbsp;an&nbsp;album&nbsp;mbid,&nbsp;returns&nbsp;a&nbsp;list&nbsp;of&nbsp;potential&nbsp;album_id&nbsp;matches.&nbsp;<br>
+it&nbsp;will&nbsp;be&nbsp;in&nbsp;a&nbsp;{&nbsp;artist,&nbsp;id,&nbsp;name&nbsp;}&nbsp;dict&nbsp;because&nbsp;you&nbsp;still&nbsp;need&nbsp;to&nbsp;verify<br>
+it&nbsp;belongs&nbsp;to&nbsp;the&nbsp;expected&nbsp;artist.</tt></dd></dl>
+ <dl><dt><a name="-getAlbumTracks"><strong>getAlbumTracks</strong></a>(album_id)</dt><dd><tt>given&nbsp;an&nbsp;album&nbsp;number,&nbsp;returns&nbsp;the&nbsp;track&nbsp;listing&nbsp;for&nbsp;that&nbsp;album.<br>
+album&nbsp;numbers&nbsp;are&nbsp;obtained&nbsp;from&nbsp;getAlbumDetails.</tt></dd></dl>
+ <dl><dt><a name="-getAllArtistInfo"><strong>getAllArtistInfo</strong></a>(fixed_artist_str)</dt><dd><tt>given&nbsp;a&nbsp;corrected&nbsp;artist&nbsp;name&nbsp;via&nbsp;prior&nbsp;api&nbsp;call&nbsp;(preferbly&nbsp;google),&nbsp;returns&nbsp;struct&nbsp;below&nbsp;<br>
+&nbsp;<br>
+returns:<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;ArtistObj<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AlbumObj1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrackObj1<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrackObj2<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrackObj3<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AlbumObj2</tt></dd></dl>
+ <dl><dt><a name="-getArtistsAlbums"><strong>getArtistsAlbums</strong></a>(artist_str)</dt><dd><tt>given&nbsp;an&nbsp;artist&nbsp;name,&nbsp;returns&nbsp;strings&nbsp;of&nbsp;popular&nbsp;albums&nbsp;with&nbsp;their&nbsp;MBIDs</tt></dd></dl>
+ <dl><dt><a name="-printEach"><strong>printEach</strong></a>(x)</dt></dl>
+</td></tr></table>
+</body></html>

@@ -1,0 +1,40 @@
+#       *remember your del functions
+#       *new style classes (add statics and properties)
+#       *unit tests (unittest module)
+#       *mp4 support
+#       *more efficient searching (traverse the xml tree? maybe bin search?)
+#       *setup some producer/consumer for the chksum gen/file reading
+#       *more efficent list.index() searching
+#       *better thread interrupts (ctrl-c no work)
+#       *cleanup class/variable names
+#       *better exceptions
+#       *grep for TODO
+#       *search for Error tag in XML
+#       *make all classes as safe and as generic as possible
+#       *figure out WTF unicode support is all about
+#       *compare pylast networking retry code to how I implemented it
+#       *more list comps where possible
+#       *more classes! random lists and dicts getting confusing
+#       *touch pickle file
+#       *would be nice to design more classes so I don't have to remember keynames 
+
+#       *on webpage, show screenshots of annoying problems this intends to fix
+#       *maybe have an option to play an MP3 from the gui to determine which song it is
+#       *option in GUI to change which album you're using
+#       *explain how artist and title are usually ok, the rest are junk. explain album algo on website
+#       *option to trust album information
+#       *maybe if you only have 5/15 tracks for an album, put them in the greatest hits
+#       *option to use 100% music brainz 
+#       *time estimates for everything
+#       *wizard to run setup
+#       *option to use folder names for album information
+#       *option to save old ID3 info in hopes of reloading it later
+#       *maybe use a spreadsheet interface instead of an XML one?
+
+
+#       *popup errors instead of just logging them
+#       *QA with network disconnected
+#       *work on auto setup. possibly use built in python libs for that
+#       *test with various permissions disabled
+#       *interface better with itunes db
+#       *comments and docstrings (pydoc)

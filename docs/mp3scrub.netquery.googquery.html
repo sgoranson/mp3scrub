@@ -1,0 +1,51 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.netquery.googquery</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.<a href="mp3scrub.netquery.html"><font color="#ffffff">netquery</font></a>.googquery</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/netquery/googquery.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/netquery/googquery.py</a></font></td></tr></table>
+    <p><tt>Module&nbsp;to&nbsp;use&nbsp;google&nbsp;to&nbsp;fix&nbsp;spelling&nbsp;in&nbsp;artist&nbsp;names.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;risky,&nbsp;but&nbsp;it&nbsp;works&nbsp;surprisingly&nbsp;well.&nbsp;You&nbsp;do&nbsp;a&nbsp;query&nbsp;for&nbsp;'artistname&nbsp;wiki',<br>
+and&nbsp;90%&nbsp;of&nbsp;the&nbsp;time&nbsp;the&nbsp;first&nbsp;hit&nbsp;will&nbsp;be&nbsp;the&nbsp;wikipedia&nbsp;page&nbsp;for&nbsp;that&nbsp;artist&nbsp;with&nbsp;<br>
+perfect&nbsp;spelling.&nbsp;Of&nbsp;course&nbsp;you&nbsp;need&nbsp;to&nbsp;validate&nbsp;that&nbsp;it's&nbsp;the&nbsp;page&nbsp;you&nbsp;think&nbsp;it&nbsp;is,<br>
+but&nbsp;if&nbsp;it's&nbsp;not,&nbsp;you&nbsp;just&nbsp;move&nbsp;on&nbsp;and&nbsp;let&nbsp;musicbrainz&nbsp;take&nbsp;care&nbsp;of&nbsp;the&nbsp;track&nbsp;instead.<br>
+&nbsp;<br>
+Why&nbsp;not&nbsp;use&nbsp;last.fm?&nbsp;because&nbsp;it&nbsp;just&nbsp;doesn't&nbsp;work&nbsp;that&nbsp;well&nbsp;for&nbsp;spelling&nbsp;mistakes.&nbsp;e.g.<br>
+go&nbsp;to&nbsp;last.fm,&nbsp;type&nbsp;in&nbsp;'ozzy&nbsp;osborne',&nbsp;and&nbsp;observe&nbsp;the&nbsp;poor&nbsp;results.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+<a href="re.html">re</a><br>
+<a href="simplejson.html">simplejson</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.util.strtool.html">mp3scrub.util.strtool</a><br>
+<a href="sys.html">sys</a><br>
+<a href="types.html">types</a><br>
+</td><td width="25%" valign=top><a href="unicodedata.html">unicodedata</a><br>
+<a href="urllib.html">urllib</a><br>
+<a href="urllib2.html">urllib2</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-getresp"><strong>getresp</strong></a>(search_str)</dt><dd><tt>do&nbsp;the&nbsp;low&nbsp;level&nbsp;HTTP&nbsp;query</tt></dd></dl>
+ <dl><dt><a name="-googquery"><strong>googquery</strong></a>(search_str)</dt><dd><tt>do&nbsp;a&nbsp;query&nbsp;for&nbsp;"artist_str&nbsp;wiki",&nbsp;get&nbsp;back&nbsp;json&nbsp;results,&nbsp;and<br>
+loop&nbsp;through&nbsp;the&nbsp;results&nbsp;till&nbsp;we&nbsp;find&nbsp;a&nbsp;legit&nbsp;wiki&nbsp;page.<br>
+&nbsp;<br>
+returns&nbsp;''&nbsp;if&nbsp;not&nbsp;found,&nbsp;corrected&nbsp;artistStr&nbsp;if&nbsp;found</tt></dd></dl>
+ <dl><dt><a name="-trav"><strong>trav</strong></a>(x)</dt><dd><tt>debug&nbsp;function&nbsp;for&nbsp;json&nbsp;output</tt></dd></dl>
+</td></tr></table>
+</body></html>

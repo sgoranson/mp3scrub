@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.scrubCmds</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.scrubCmds</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/scrubCmds.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/scrubCmds.py</a></font></td></tr></table>
+    <p><tt>A&nbsp;facade&nbsp;to&nbsp;all&nbsp;the&nbsp;modules&nbsp;for&nbsp;mp3scrub&nbsp;functionality.&nbsp;Can&nbsp;also&nbsp;be&nbsp;used<br>
+as&nbsp;a&nbsp;CLI.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.util.fileio.html">mp3scrub.util.fileio</a><br>
+<a href="mp3scrub.globalz.html">mp3scrub.globalz</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.netquery.puidquery.html">mp3scrub.netquery.puidquery</a><br>
+<a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.util.strtool.html">mp3scrub.util.strtool</a><br>
+<a href="mp3scrub.netquery.tagGuessCache.html">mp3scrub.netquery.tagGuessCache</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-ExportWork"><strong>ExportWork</strong></a>(mp3_list, file_name)</dt><dd><tt>Wrapper&nbsp;for&nbsp;persisting&nbsp;the&nbsp;mp3&nbsp;tags&nbsp;to&nbsp;an&nbsp;XML&nbsp;file.<br>
+&nbsp;<br>
+mp3_list&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;MP3File&nbsp;objects&nbsp;(supposedly&nbsp;populated&nbsp;via&nbsp;main.FindMusic)&nbsp;<br>
+file_name&nbsp;-&gt;&nbsp;name&nbsp;of&nbsp;the&nbsp;xml&nbsp;file&nbsp;to&nbsp;output<br>
+&nbsp;<br>
+returns&nbsp;-&gt;&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-FindMusic"><strong>FindMusic</strong></a>(my_dir, callback, only_artist_str<font color="#909090">=''</font>)</dt><dd><tt>Given&nbsp;a&nbsp;directory,&nbsp;will&nbsp;populate&nbsp;a&nbsp;list&nbsp;with&nbsp;all&nbsp;the&nbsp;*.mp3&nbsp;files&nbsp;found&nbsp;in<br>
+that&nbsp;directory&nbsp;(recursively)&nbsp;and&nbsp;read&nbsp;their&nbsp;current&nbsp;tag&nbsp;info.&nbsp;Usually&nbsp;the&nbsp;<br>
+first&nbsp;step&nbsp;in&nbsp;any&nbsp;use&nbsp;case.&nbsp;<br>
+&nbsp;<br>
+my_dir&nbsp;-&gt;&nbsp;directory&nbsp;to&nbsp;search&nbsp;for&nbsp;*.mp3<br>
+callback&nbsp;-&gt;&nbsp;a&nbsp;function&nbsp;pointer&nbsp;funct(str)&nbsp;used&nbsp;to&nbsp;return&nbsp;status&nbsp;info&nbsp;<br>
+only_artist_str&nbsp;-&gt;&nbsp;optional&nbsp;tag&nbsp;to&nbsp;only&nbsp;find&nbsp;artists&nbsp;matching&nbsp;this&nbsp;string<br>
+&nbsp;<br>
+returns&nbsp;-&gt;&nbsp;mp3_list,&nbsp;a&nbsp;list&nbsp;of&nbsp;MP3File&nbsp;objects</tt></dd></dl>
+ <dl><dt><a name="-IdentifyMusic"><strong>IdentifyMusic</strong></a>(mp3_list, callback<font color="#909090">=None</font>)</dt><dd><tt>The&nbsp;meat&nbsp;of&nbsp;the&nbsp;entire&nbsp;program.&nbsp;Loops&nbsp;through&nbsp;a&nbsp;list&nbsp;of&nbsp;MP3File&nbsp;objs,&nbsp;and&nbsp;will<br>
+attempt&nbsp;to&nbsp;find&nbsp;better&nbsp;tag&nbsp;matches&nbsp;for&nbsp;the&nbsp;artist,&nbsp;album,&nbsp;track,&nbsp;and&nbsp;tracknum.<br>
+&nbsp;<br>
+&nbsp;<br>
+mp3_list&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;MP3File&nbsp;objects&nbsp;(supposedly&nbsp;populated&nbsp;via&nbsp;main.FindMusic)<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(note&nbsp;that&nbsp;these&nbsp;objects&nbsp;specify&nbsp;both&nbsp;old&nbsp;and&nbsp;refined&nbsp;tags.&nbsp;entering<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this&nbsp;function,&nbsp;the&nbsp;refined&nbsp;tags&nbsp;will&nbsp;be&nbsp;empty.&nbsp;exiting&nbsp;this&nbsp;function,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;they&nbsp;will&nbsp;be&nbsp;populated)<br>
+&nbsp;<br>
+callback&nbsp;-&gt;&nbsp;a&nbsp;function&nbsp;pointer&nbsp;funct(str)&nbsp;used&nbsp;to&nbsp;return&nbsp;status&nbsp;info&nbsp;<br>
+&nbsp;<br>
+returns&nbsp;-&gt;&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-ImportWork"><strong>ImportWork</strong></a>(mp3_list, file_name)</dt><dd><tt>load&nbsp;up&nbsp;a&nbsp;previously&nbsp;exported&nbsp;list&nbsp;<br>
+&nbsp;<br>
+file_name&nbsp;-&gt;&nbsp;name&nbsp;of&nbsp;the&nbsp;xml&nbsp;file&nbsp;of&nbsp;exported&nbsp;list<br>
+mp3_list&nbsp;-&gt;&nbsp;empty&nbsp;list&nbsp;to&nbsp;populate&nbsp;with&nbsp;MP3File's<br>
+&nbsp;<br>
+returns&nbsp;-&gt;&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-MakeDirTree"><strong>MakeDirTree</strong></a>(mp3_list, dir_path)</dt><dd><tt>Given&nbsp;a&nbsp;list&nbsp;of&nbsp;MP3File,&nbsp;will&nbsp;move&nbsp;the&nbsp;*.mp3&nbsp;files&nbsp;they&nbsp;represnt&nbsp;to&nbsp;a&nbsp;new<br>
+directory&nbsp;in&nbsp;dir_path.&nbsp;Will&nbsp;make&nbsp;a&nbsp;pretty&nbsp;tree&nbsp;with&nbsp;a&nbsp;new&nbsp;folder&nbsp;per&nbsp;artist.<br>
+&nbsp;<br>
+mp3_list&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;MP3File&nbsp;objects&nbsp;(supposedly&nbsp;populated&nbsp;via&nbsp;main.FindMusic)<br>
+dir_path&nbsp;-&gt;&nbsp;directory&nbsp;to&nbsp;create&nbsp;the&nbsp;tree<br>
+&nbsp;<br>
+returns&nbsp;-&gt;&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-WriteMusic"><strong>WriteMusic</strong></a>(mp3_list, callback)</dt><dd><tt>Given&nbsp;a&nbsp;list&nbsp;of&nbsp;MP3File,&nbsp;will&nbsp;write&nbsp;to&nbsp;the&nbsp;*.mp3&nbsp;files&nbsp;the&nbsp;new&nbsp;tag&nbsp;info&nbsp;stored<br>
+in&nbsp;the&nbsp;MP3File.<br>
+&nbsp;<br>
+&nbsp;<br>
+mp3_list&nbsp;-&gt;&nbsp;list&nbsp;of&nbsp;MP3File&nbsp;objects&nbsp;(supposedly&nbsp;populated&nbsp;via&nbsp;main.FindMusic)<br>
+callback&nbsp;-&gt;&nbsp;a&nbsp;function&nbsp;pointer&nbsp;funct(str)&nbsp;used&nbsp;to&nbsp;return&nbsp;status&nbsp;info&nbsp;<br>
+&nbsp;<br>
+returns&nbsp;-&gt;&nbsp;None</tt></dd></dl>
+</td></tr></table>
+</body></html>

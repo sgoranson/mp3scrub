@@ -1,0 +1,79 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.netquery.tagGuessCache</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.<a href="mp3scrub.netquery.html"><font color="#ffffff">netquery</font></a>.tagGuessCache</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/netquery/tagGuessCache.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/netquery/tagGuessCache.py</a></font></td></tr></table>
+    <p><tt>this&nbsp;is&nbsp;a&nbsp;module&nbsp;(used&nbsp;as&nbsp;a&nbsp;singleton)&nbsp;that&nbsp;keeps&nbsp;track&nbsp;of&nbsp;the&nbsp;artists,&nbsp;albums,<br>
+and&nbsp;tracks&nbsp;we've&nbsp;found&nbsp;so&nbsp;far&nbsp;in&nbsp;the&nbsp;mp3&nbsp;collection.&nbsp;Keeping&nbsp;track&nbsp;of&nbsp;these&nbsp;is&nbsp;<br>
+key&nbsp;to&nbsp;the&nbsp;algorithm&nbsp;of&nbsp;choosing&nbsp;correct&nbsp;album&nbsp;names&nbsp;(see&nbsp;refineGuessCache).<br>
+&nbsp;<br>
+internally&nbsp;there&nbsp;are&nbsp;3&nbsp;global&nbsp;dicts.&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ARTIST_META_CACHE:&nbsp;just&nbsp;to&nbsp;cache&nbsp;the&nbsp;lastfm&nbsp;calls&nbsp;for&nbsp;ALL&nbsp;artist/album/track&nbsp;info<br>
+&nbsp;&nbsp;&nbsp;&nbsp;TRACK_GUESS_CACHE:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;ALBUM_GUESS_CACHE:&nbsp;these&nbsp;two&nbsp;dicts&nbsp;keep&nbsp;track&nbsp;of&nbsp;the&nbsp;same&nbsp;info&nbsp;(the&nbsp;artists,&nbsp;albums,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tracks,&nbsp;and&nbsp;associated&nbsp;mp3&nbsp;path&nbsp;names).&nbsp;I&nbsp;use&nbsp;2&nbsp;dicts&nbsp;because&nbsp;it<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;makes&nbsp;the&nbsp;refineGuessCache&nbsp;algorithm&nbsp;much&nbsp;easier.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.globalz.html">mp3scrub.globalz</a><br>
+<a href="mp3scrub.netquery.googquery.html">mp3scrub.netquery.googquery</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.netquery.lastfmquery.html">mp3scrub.netquery.lastfmquery</a><br>
+<a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="pickle.html">pickle</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.util.strtool.html">mp3scrub.util.strtool</a><br>
+<a href="sys.html">sys</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-clearCache"><strong>clearCache</strong></a>()</dt><dd><tt>reset&nbsp;all&nbsp;the&nbsp;cache</tt></dd></dl>
+ <dl><dt><a name="-dbgPrint"><strong>dbgPrint</strong></a>(fileDes)</dt></dl>
+ <dl><dt><a name="-dump"><strong>dump</strong></a>()</dt><dd><tt>save&nbsp;off&nbsp;the&nbsp;artist&nbsp;info&nbsp;we've&nbsp;found&nbsp;for&nbsp;next&nbsp;time</tt></dd></dl>
+ <dl><dt><a name="-getRawArtistInfo"><strong>getRawArtistInfo</strong></a>(artist_str)</dt></dl>
+ <dl><dt><a name="-queryGoogCache"><strong>queryGoogCache</strong></a>(artist_name)</dt><dd><tt>cache&nbsp;google&nbsp;queries&nbsp;to&nbsp;avoid&nbsp;web&nbsp;io</tt></dd></dl>
+ <dl><dt><a name="-refineGuessCache"><strong>refineGuessCache</strong></a>()</dt><dd><tt>narrow&nbsp;down&nbsp;album&nbsp;guesses&nbsp;after&nbsp;everythings&nbsp;been&nbsp;processed.<br>
+&nbsp;<br>
+REFINE&nbsp;STEPS<br>
+1.&nbsp;sort&nbsp;your&nbsp;albums&nbsp;from&nbsp;best&nbsp;to&nbsp;worst,&nbsp;ranked&nbsp;by:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(%complete&nbsp;*&nbsp;%complete&nbsp;*&nbsp;albumRank&nbsp;*&nbsp;total_tracks)<br>
+&nbsp;<br>
+2.&nbsp;look&nbsp;at&nbsp;all&nbsp;your&nbsp;tracks&nbsp;from&nbsp;your&nbsp;current&nbsp;top&nbsp;album.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;a)&nbsp;remove&nbsp;all&nbsp;these&nbsp;tracks&nbsp;from&nbsp;lesser&nbsp;albums&nbsp;(cause&nbsp;they're&nbsp;a&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;worse&nbsp;match)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;b)&nbsp;add&nbsp;the&nbsp;current&nbsp;top&nbsp;album&nbsp;to&nbsp;a&nbsp;'processed'&nbsp;list,&nbsp;so&nbsp;we&nbsp;don't&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;process&nbsp;it&nbsp;again<br>
+&nbsp;&nbsp;&nbsp;&nbsp;c)&nbsp;since&nbsp;removing&nbsp;tracks&nbsp;from&nbsp;lesser&nbsp;albums&nbsp;will&nbsp;change&nbsp;their&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%complete&nbsp;rank,&nbsp;resort&nbsp;by&nbsp;going&nbsp;back&nbsp;to&nbsp;step&nbsp;1<br>
+&nbsp;<br>
+3.&nbsp;repeat&nbsp;until&nbsp;all&nbsp;albums&nbsp;processed</tt></dd></dl>
+ <dl><dt><a name="-searchGuessCache"><strong>searchGuessCache</strong></a>(artist_str, path_str)</dt><dd><tt>given&nbsp;an&nbsp;artistname&nbsp;and&nbsp;path,&nbsp;see&nbsp;if&nbsp;we&nbsp;found&nbsp;a&nbsp;guess</tt></dd></dl>
+ <dl><dt><a name="-undump"><strong>undump</strong></a>()</dt><dd><tt>if&nbsp;we've&nbsp;already&nbsp;queried&nbsp;artist&nbsp;info&nbsp;in&nbsp;the&nbsp;past,&nbsp;load&nbsp;it&nbsp;up,&nbsp;son!</tt></dd></dl>
+ <dl><dt><a name="-updateGuessCache"><strong>updateGuessCache</strong></a>(path_str, id3_track_str, fixed_artist_str)</dt><dd><tt>called&nbsp;once&nbsp;per&nbsp;new&nbsp;mp3&nbsp;processed.&nbsp;adds&nbsp;all&nbsp;possible&nbsp;track/album&nbsp;matches&nbsp;to&nbsp;a&nbsp;list<br>
+that&nbsp;will&nbsp;be&nbsp;further&nbsp;narrowed&nbsp;down&nbsp;later&nbsp;to&nbsp;one&nbsp;match.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ALBUM_GUESS_CACHE</strong> = {}<br>
+<strong>ARTIST_META_CACHE</strong> = {}<br>
+<strong>GOOG_META_CACHE</strong> = {}<br>
+<strong>TRACK_GUESS_CACHE</strong> = {}</td></tr></table>
+</body></html>

@@ -1,0 +1,69 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.util.fileio</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.<a href="mp3scrub.util.html"><font color="#ffffff">util</font></a>.fileio</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/util/fileio.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/util/fileio.py</a></font></td></tr></table>
+    <p><tt>functions&nbsp;for&nbsp;searching&nbsp;fs&nbsp;for&nbsp;music,&nbsp;reading/writing&nbsp;tags&nbsp;from&nbsp;files</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.util.findxml.html">mp3scrub.util.findxml</a><br>
+<a href="fnmatch.html">fnmatch</a><br>
+<a href="mp3scrub.globalz.html">mp3scrub.globalz</a><br>
+</td><td width="25%" valign=top><a href="hashlib.html">hashlib</a><br>
+<a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="mp3scrub.util.strtool.html">mp3scrub.util.strtool</a><br>
+<a href="sys.html">sys</a><br>
+<a href="zlib.html">zlib</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="mp3scrub.util.fileio.html#Id3tool">Id3tool</a>
+</font></dt></dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Id3tool">class <strong>Id3tool</strong></a></font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>class&nbsp;to&nbsp;read/write&nbsp;mp3&nbsp;tags<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="Id3tool-__init__"><strong>__init__</strong></a>(self, fn)</dt><dd><tt>allow&nbsp;throw&nbsp;if&nbsp;file&nbsp;not&nbsp;supported</tt></dd></dl>
+
+<dl><dt><a name="Id3tool-readTag"><strong>readTag</strong></a>(self, tag)</dt></dl>
+
+<dl><dt><a name="Id3tool-save"><strong>save</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="Id3tool-writeTag"><strong>writeTag</strong></a>(self, tag, val)</dt></dl>
+
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-MP3Finder"><strong>MP3Finder</strong></a>(dir_str, mp3_list, callback)</dt><dd><tt>search&nbsp;for&nbsp;mp3&nbsp;files&nbsp;in&nbsp;directory&nbsp;dir_str.&nbsp;populates&nbsp;list&nbsp;mp3_list</tt></dd></dl>
+ <dl><dt><a name="-doXtoMP3s"><strong>doXtoMP3s</strong></a>(x, *args)</dt></dl>
+ <dl><dt><a name="-exportMP3s"><strong>exportMP3s</strong></a>(mp3_list, file_name)</dt><dd><tt>given&nbsp;an&nbsp;mp3_list,&nbsp;export&nbsp;their&nbsp;tags&nbsp;and&nbsp;paths&nbsp;to&nbsp;an&nbsp;xml&nbsp;file</tt></dd></dl>
+ <dl><dt><a name="-importMP3s"><strong>importMP3s</strong></a>(mp3_list, file_name)</dt><dd><tt>load&nbsp;an&nbsp;xml&nbsp;file&nbsp;into&nbsp;an&nbsp;MP3File&nbsp;list</tt></dd></dl>
+</td></tr></table>
+</body></html>

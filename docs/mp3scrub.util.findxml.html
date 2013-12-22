@@ -1,0 +1,215 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module mp3scrub.util.findxml</title>
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="mp3scrub.html"><font color="#ffffff">mp3scrub</font></a>.<a href="mp3scrub.util.html"><font color="#ffffff">util</font></a>.findxml</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/usr/local/lib/python2.6/dist-packages/mp3scrub/util/findxml.py">/usr/local/lib/python2.6/dist-packages/mp3scrub/util/findxml.py</a></font></td></tr></table>
+    <p><tt>Helper&nbsp;classes&nbsp;to&nbsp;simplify&nbsp;XML&nbsp;I/O&nbsp;(last.fm&nbsp;and&nbsp;config&nbsp;files)</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="mp3scrub.globalz.html">mp3scrub.globalz</a><br>
+<a href="mp3scrub.util.mylog.html">mp3scrub.util.mylog</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="mp3scrub.util.strtool.html">mp3scrub.util.strtool</a><br>
+</td><td width="25%" valign=top><a href="xml.html">xml</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="__builtin__.html#object">__builtin__.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="mp3scrub.util.findxml.html#HashXMLNode">HashXMLNode</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.util.findxml.html#MP3FileNode">MP3FileNode</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="mp3scrub.util.findxml.html#XMLReader">XMLReader</a>
+</font></dt><dt><font face="helvetica, arial"><a href="mp3scrub.util.findxml.html#XMLWriter">XMLWriter</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="AbsXMLNode">class <strong>AbsXMLNode</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Abstract&nbsp;Node&nbsp;representation.&nbsp;Makes&nbsp;a&nbsp;tiny&nbsp;1node-xmldoc&nbsp;that&nbsp;can&nbsp;be<br>
+added&nbsp;to&nbsp;a&nbsp;larger&nbsp;xml&nbsp;doc.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="AbsXMLNode-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbsXMLNode-__init__"><strong>__init__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbsXMLNode-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AbsXMLNode-toString"><strong>toString</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="HashXMLNode">class <strong>HashXMLNode</strong></a>(<a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>unused&nbsp;for&nbsp;now.&nbsp;orginially&nbsp;stored&nbsp;all&nbsp;mp3s&nbsp;in&nbsp;XML&nbsp;format&nbsp;first,&nbsp;not&nbsp;in&nbsp;memory<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.util.findxml.html#HashXMLNode">HashXMLNode</a></dd>
+<dd><a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="HashXMLNode-__init__"><strong>__init__</strong></a>(self, _mp3_path, _dup_flag, _hash)</dt></dl>
+
+<dl><dt><a name="HashXMLNode-toString"><strong>toString</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a>:<br>
+<dl><dt><a name="HashXMLNode-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="HashXMLNode-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MP3FileNode">class <strong>MP3FileNode</strong></a>(<a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>reprsents&nbsp;one&nbsp;mp3&nbsp;file&nbsp;(tags&nbsp;+&nbsp;path).&nbsp;used&nbsp;to&nbsp;persist&nbsp;an&nbsp;editing&nbsp;session<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="mp3scrub.util.findxml.html#MP3FileNode">MP3FileNode</a></dd>
+<dd><a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a></dd>
+<dd><a href="__builtin__.html#object">__builtin__.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MP3FileNode-__init__"><strong>__init__</strong></a>(self, mp3_file_obj)</dt></dl>
+
+<dl><dt><a name="MP3FileNode-toString"><strong>toString</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a>:<br>
+<dl><dt><a name="MP3FileNode-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="MP3FileNode-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="mp3scrub.util.findxml.html#AbsXMLNode">AbsXMLNode</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="XMLReader">class <strong>XMLReader</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Helper&nbsp;to&nbsp;sort&nbsp;through&nbsp;XML&nbsp;files.<br>
+&nbsp;<br>
+use&nbsp;xmlStr&nbsp;if&nbsp;inputting&nbsp;an&nbsp;xmldoc&nbsp;as&nbsp;a&nbsp;string<br>
+use&nbsp;xmlFile&nbsp;if&nbsp;inputting&nbsp;xmldoc&nbsp;as&nbsp;a&nbsp;file<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="XMLReader-__del__"><strong>__del__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="XMLReader-__init__"><strong>__init__</strong></a>(self, **kwargs)</dt></dl>
+
+<dl><dt><a name="XMLReader-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="XMLReader-getTheseNodes"><strong>getTheseNodes</strong></a>(self, node_name)</dt></dl>
+
+<hr>
+Static methods defined here:<br>
+<dl><dt><a name="XMLReader-strToBool"><strong>strToBool</strong></a>(the_str)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="XMLWriter">class <strong>XMLWriter</strong></a>(<a href="__builtin__.html#object">__builtin__.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>class&nbsp;to&nbsp;manage&nbsp;XMLNodes,&nbsp;creates&nbsp;a&nbsp;full&nbsp;xml&nbsp;doc&nbsp;and&nbsp;writes&nbsp;to&nbsp;file<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="XMLWriter-__init__"><strong>__init__</strong></a>(self, _config_path)</dt></dl>
+
+<dl><dt><a name="XMLWriter-__str__"><strong>__str__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="XMLWriter-addNode"><strong>addNode</strong></a>(self, node_obj)</dt></dl>
+
+<dl><dt><a name="XMLWriter-close"><strong>close</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="XMLWriter-doesNodeValExist"><strong>doesNodeValExist</strong></a>(self, node_name, node_val)</dt></dl>
+
+<dl><dt><a name="XMLWriter-flush"><strong>flush</strong></a>(self)</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-safeChildGet"><strong>safeChildGet</strong></a>(parent_node, child_name)</dt><dd><tt>handy&nbsp;function&nbsp;to&nbsp;get&nbsp;the&nbsp;txt&nbsp;of&nbsp;a&nbsp;child&nbsp;txt&nbsp;node.&nbsp;returns&nbsp;''&nbsp;if&nbsp;not&nbsp;found</tt></dd></dl>
+</td></tr></table>
+</body></html>

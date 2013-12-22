@@ -1,0 +1,4 @@
+Ubuntu:
+
+sudo apt-get install python-wxgtk2.8 python-mutagen python-musicdns libavcodec-dev libavformat-dev libofa0-dev python-musicbrainz2
+
